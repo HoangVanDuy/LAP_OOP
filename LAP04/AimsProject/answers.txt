@@ -1,0 +1,15 @@
+1. Lớp nào nên triển khai (implement) interface Comparable?
+Lớp Media nên triển khai interface Comparable<Media>, vì chúng ta đang sắp xếp một tập hợp các đối tượng Media.
+
+2. Trong các lớp đó, nên triển khai phương thức compareTo() như thế nào để phản ánh đúng thứ tự mong muốn?
+Ghi đè (override) phương thức compareTo(Media other) trong lớp Media.
+Bên trong phương thức này sẽ so sánh các thuộc tính của đối tượng hiện tại (this) với đối tượng other (ví dụ: so sánh this.getTitle() với other.getTitle(), và nếu chúng bằng nhau thì tiếp tục so sánh this.getCost() với other.getCost()).
+
+3. Chúng ta có thể có hai quy tắc sắp xếp của item (theo title rồi đến cost, và theo cost rồi đến title) nếu sử dụng cách tiếp cận bằng interface Comparable không?
+Không. Interface Comparable chỉ cho phép định nghĩa một thứ tự “tự nhiên” (natural ordering) duy nhất cho lớp thông qua phương thức compareTo().
+Nếu cần nhiều chiến lược sắp xếp khác nhau phải sử dụng interface Comparator.
+
+4. Giả sử DVD có quy tắc sắp xếp khác với các loại media khác, cụ thể là theo title, sau đó theo độ dài giảm dần (decreasing length), rồi đến cost. Bạn sẽ sửa mã như thế nào để hỗ trợ điều này?
+Cho lớp DigitalVideoDisc ghi đè phương thức compareTo(Media other) (giả sử Media triển khai Comparable).
+Bên trong DigitalVideoDisc.compareTo(), trước tiên kiểm tra xem other có phải là một instance của DigitalVideoDisc hay không. Nếu đúng sẽ so sánh title của chúng, sau đó so sánh độ dài theo thứ tự giảm dần, và cuối cùng là cost.
+Nếu other không phải là DigitalVideoDisc có thể gọi lại super.compareTo(other).
