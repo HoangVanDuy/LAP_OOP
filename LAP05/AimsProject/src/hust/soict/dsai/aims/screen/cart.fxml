@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <MenuBar>
+            <menus>
+               <Menu text="Store">
+                  <items>
+                     <MenuItem fx:id="menuViewStore" onAction="#viewStore" text="View Store" />
+                     <MenuItem fx:id="menuViewCart" onAction="#viewCart" text="View Cart" />
+                     <Menu mnemonicParsing="false" text="Update Store">
+                        <items>
+                           <MenuItem onAction="#addBook" text="Add Book" />
+                           <MenuItem onAction="#addCd" text="Add CD" />
+                           <MenuItem onAction="#addDvd" text="Add DVD" />
+                        </items>
+                     </Menu>
+                     <MenuItem onAction="#exitApp" text="Exit" />
+                  </items>
+               </Menu>
+            </menus>
+         </MenuBar>
+         <Label text="CART">
+            <font>
+               <Font size="50.0" />
+            </font>
+            <padding>
+               <Insets left="10.0" />
+            </padding>
+            <style>
+               -fx-text-fill: aqua;
+            </style>
+         </Label>
+      </VBox>
+   </top>
+   <center>
+      <VBox spacing="8.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <padding>
+               <Insets bottom="10.0" top="10.0" />
+            </padding>
+            <Label text="Filter:" />
+            <TextField fx:id="tfFilter" prefWidth="200.0" />
+            <RadioButton fx:id="radioBtnFilterId" selected="true" text="By ID" />
+            <RadioButton fx:id="radioBtnFilterTitle" text="By Title" />
+         </HBox>
+         <TableView fx:id="tblMedia" VBox.vgrow="ALWAYS" columnResizePolicy="CONSTRAINED_RESIZE_POLICY">
+            <columns>
+               <TableColumn fx:id="colMediaTitle" prefWidth="300.0" text="Title" />
+               <TableColumn fx:id="colMediacategory" prefWidth="200.0" text="Category" />
+               <TableColumn fx:id="colMediaCost" prefWidth="100.0" text="Cost" />
+            </columns>
+         </TableView>
+         <ButtonBar>
+            <buttons>
+               <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#btnPlayPressed" text="Play" />
+               <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#btnRemovePressed" text="Remove" />
+            </buttons>
+         </ButtonBar>
+      </VBox>
+   </center>
+   <right>
+      <VBox alignment="TOP_CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="50.0" />
+         </padding>
+         <HBox alignment="CENTER" spacing="10.0">
+            <Label text="Total:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotalCost" text="0 $">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <style>
+                  -fx-text-fill: aqua;
+               </style>
+            </Label>
+         </HBox>
+         <Button fx:id="btnPlaceOrder" mnemonicParsing="false" onAction="#btnPlaceOrderPressed" text="Place Order">
+            <font>
+               <Font size="24.0" />
+            </font>
+            <style>
+               -fx-background-color: red; -fx-text-fill: white;
+            </style>
+         </Button>
+      </VBox>
+   </right>
+</BorderPane>
